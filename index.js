@@ -4,4 +4,4 @@
 require('shelljs/global');
 
 // Init app modules
-// require('./modules/questions')();
+require('./modules/hgsk')();
