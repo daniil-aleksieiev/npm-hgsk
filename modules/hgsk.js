@@ -1,11 +1,11 @@
 'use strict';
 
-const colors = require('colors'),
-      inquirer = require('inquirer'),
-      shell = require('shelljs'),
+const colors      = require('colors'),
+      inquirer    = require('inquirer'),
+      shell       = require('shelljs'),
       cfg         = require('./config.js'),
-      isWindows = /^win/.test(process.platform),
-      defaultGit = 'https://github.com/daniil-aleksieiev/starter-kit-hugo-with-gulp.git';
+      isWindows   = /^win/.test(process.platform),
+      defaultGit  = 'https://github.com/daniil-aleksieiev/starter-kit-hugo-with-gulp.git';
 
 let config = [];
 
@@ -40,7 +40,7 @@ module.exports = () => {
       let questions = [{
         message: cfg.messages.projectName,
         type: 'input',
-        name: 'value'
+        name: 'value',
       }];
       
       inquirer.prompt(questions).then(answers => {
@@ -63,10 +63,10 @@ module.exports = () => {
       name: 'value',
       choices: [{
         name: 'Yes',
-        value: 'yes'
+        value: 'yes',
       }, {
         name: 'No',
-        value: 'no'
+        value: 'no',
       }],
     }];
     
