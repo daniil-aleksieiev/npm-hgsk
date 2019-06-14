@@ -29,8 +29,8 @@ module.exports = () => {
   
   function gitClone() {
     shell.exec(`${cfg.terminal.create} ${config[0].projectName}`);
+    shell.exec(`${cfg.terminal.clone} ${defaultGit} ${config[0].projectName} -b master`);
     shell.cd(config[0].projectName);
-    shell.exec(`${cfg.terminal.clone} ${defaultGit} ./ -b master`);
     shell.exec(`${cfg.terminal.delete} .git`);
   }
 
@@ -73,25 +73,25 @@ module.exports = () => {
     inquirer.prompt(questions).then(answers => {
       switch (answers.value) {
         case 'yes':
-          console.log('Good!\n'.green);
+          console.log('\nGood!\n'.green);
           setTimeout(() => {
             shell.exec('clear');
-            console.log(cfg.messages.startCloning.green);
+            console.log(`\n${cfg.messages.startCloning.green}\n`);
           }, 2000);
           setTimeout(() => {
             gitClone();
-            console.log(cfg.messages.success.green);
+            console.log(`\n${cfg.messages.success.green}\n`);
           }, 4000);
           break;
         case 'no':
-          console.log('\n' + cfg.messages.hugoInstall.yellow + '\n');
+          console.log(`\n${cfg.messages.hugoInstall.yellow}\n`);
           config.push({
             hugoOnBoard: false,
           });
           setTimeout(() => {
             shell.exec('brew install hugo');
             gitClone();
-            console.log('\n' + cfg.messages.success.green + '\n');
+            console.log(`\n${cfg.messages.success.green}\n`);
           }, 2000);
           break;
         default:
