@@ -3,9 +3,9 @@
 const colors = require('colors'),
       inquirer = require('inquirer'),
       shell = require('shelljs'),
+      cfg         = require('./config.js'),
       isWindows = /^win/.test(process.platform),
       defaultGit = 'https://github.com/daniil-aleksieiev/starter-kit-hugo-with-gulp.git';
-      // gitClone = require('./git');
 
 let config = [];
 
@@ -28,17 +28,17 @@ module.exports = () => {
   console.log('\n*****************************************\n*\tWelcome to GOHUGO Starter Kit\t*\n*****************************************\n'.green);
   
   function gitClone() {
-    shell.exec('mkdir ' + config[0].projectName);
+    shell.exec(`${cfg.terminal.create} ${config[0].projectName}`);
     shell.cd(config[0].projectName);
-    shell.exec('git clone ' + defaultGit + ' ./ -b master');
-    shell.exec('rm -rf .git');
+    shell.exec(`${cfg.terminal.clone} ${defaultGit} ./ -b master`);
+    shell.exec(`${cfg.terminal.delete} .git`);
   }
 
   function projectType() {
     return new Promise(function (resolve, reject) {
       
       let questions = [{
-        message: 'What is the project name?',
+        message: cfg.messages.projectName,
         type: 'input',
         name: 'value'
       }];
@@ -49,7 +49,7 @@ module.exports = () => {
             projectName: answers.value,
           });
         } else {
-          console.log('Something went wrong!'.red);
+          console.log(cfg.messages.error.red);
           return;
         }
         resolve();
@@ -58,7 +58,7 @@ module.exports = () => {
   }
   projectType().then(() => {
     let questions = [{
-      message: 'Do you have Hugo?',
+      message: cfg.messages.isHugoInstall,
       type: 'list',
       name: 'value',
       choices: [{
@@ -76,26 +76,27 @@ module.exports = () => {
           console.log('Good!\n'.green);
           setTimeout(() => {
             shell.exec('clear');
-            console.log('Now we start!'.green);
+            console.log(cfg.messages.startCloning.green);
           }, 2000);
           setTimeout(() => {
             gitClone();
-            console.log('Success!'.green);
+            console.log(cfg.messages.success.green);
           }, 4000);
           break;
         case 'no':
-          console.log('We need to install!\n'.yellow);
+          console.log('\n' + cfg.messages.hugoInstall.yellow + '\n');
           config.push({
             hugoOnBoard: false,
           });
           setTimeout(() => {
             shell.exec('brew install hugo');
+            gitClone();
+            console.log('\n' + cfg.messages.success.green + '\n');
           }, 2000);
-          gitClone();
           break;
         default:
-        console.log('Something went wrong!'.red);
-        return;
+          console.log(cfg.messages.error.red);
+          return;
       }
     });
   });
