@@ -35,7 +35,7 @@ If you find yourself running into issues during installation or running the tool
 
 ## Contributing
 
-Contributions, questions and comments are all welcome and encouraged. For code contributions to JCN CLI, please see our [Contribution guide](CONTRIBUTING.md) before submitting a pull request. [Website](https://github.com/daniil-aleksieiev/npm-hgsk) related issues should be filed on the [Web Fundamentals](https://github.com/daniil-aleksieiev/npm-hgsk/issues) issue tracker. 
+Contributions, questions and comments are all welcome and encouraged. For code contributions to HGSK CLI, please see our [Contribution guide](CONTRIBUTING.md) before submitting a pull request. [Website](https://github.com/daniil-aleksieiev/npm-hgsk) related issues should be filed on the [Web Fundamentals](https://github.com/daniil-aleksieiev/npm-hgsk/issues) issue tracker. 
 
 ## License
 
