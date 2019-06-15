@@ -1,6 +1,6 @@
 {
   "name": "hgsk",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "GOHUGO Starter Kit command line tool",
   "bin": {
     "hgsk": "index.js"
