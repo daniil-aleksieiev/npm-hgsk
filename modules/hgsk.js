@@ -16,12 +16,12 @@ module.exports = () => {
       localVersion;
   
     console.log('Local version: ');
-    localVersion = exec('npm list hgsk -g | grep hgsk@ | egrep -o "([0-9]{1,}\.)+[0-9]{1,}"');
+    localVersion = exec(cfg.terminal.localVer);
     console.log('Latest version: ');
-    remoteVersion = exec('npm view hgsk version');
+    remoteVersion = exec(cfg.terminal.lastVer);
   
     if (localVersion < remoteVersion) {
-      console.log('You should update the gohugo:\nsudo npm install hgsk --global'.red);
+      console.log(`\n${cfg.messages.upd.red}`);
     }
   }
   
