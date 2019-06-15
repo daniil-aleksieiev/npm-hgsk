@@ -11,19 +11,19 @@ let config = [];
 
 module.exports = () => {
   // Check the gohugo version (currently doesn't work on Windows)
-  // if (!isWindows) {
-  //   let remoteVersion,
-  //     localVersion;
+  if (!isWindows) {
+    let remoteVersion,
+      localVersion;
   
-  //   console.log('Local version: ');
-  //   localVersion = exec('npm list hgsk -g | grep hgsk@ | egrep -o "([0-9]{1,}\.)+[0-9]{1,}"');
-  //   console.log('Latest version: ');
-  //   remoteVersion = exec('npm view hgsk version');
+    console.log('Local version: ');
+    localVersion = exec('npm list hgsk -g | grep hgsk@ | egrep -o "([0-9]{1,}\.)+[0-9]{1,}"');
+    console.log('Latest version: ');
+    remoteVersion = exec('npm view hgsk version');
   
-  //   if (localVersion < remoteVersion) {
-  //     console.log('You should update the gohugo:\nsudo npm install hgsk -g'.red);
-  //   }
-  // }
+    if (localVersion < remoteVersion) {
+      console.log('You should update the gohugo:\nsudo npm install hgsk --global'.red);
+    }
+  }
   
   console.log('\n*****************************************\n*\tWelcome to GOHUGO Starter Kit\t*\n*****************************************\n'.green);
   
