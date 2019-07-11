@@ -20,10 +20,40 @@ module.exports = () => {
     remoteVersion = exec(cfg.terminal.lastVer);
     if (localVersion < remoteVersion) {
       console.log(`\n${cfg.messages.upd.red}`);
-    }
+      return;
+    } 
   }
 
-  console.log('\n*****************************************\n*\tWelcome to GOHUGO Starter Kit\t*\n*****************************************\n'.green);
+  console.log(`\nCheck for Hugo path:\n`)
+
+  let isHugo = exec('which hugo');
+
+  if (!isHugo.length) {
+    hugoInstall().then(() => {
+      hgsk();
+    });
+  } else {
+    hgsk();
+  }
+
+  function hgsk() {
+    console.log('\n*****************************************\n*\tWelcome to GOHUGO Starter Kit\t*\n*****************************************\n'.green);
+    projectType().then(() => {
+      createProject();
+    });
+  }
+
+  function hugoInstall() {
+    return new Promise(function (resolve, reject) {
+      shell.exec('clear');
+      console.log(`\n${cfg.messages.needInstall.red}\n`);
+      setTimeout(() => {
+        console.log(`\n${cfg.messages.time.yellow}\n`);
+        shell.exec(`${cfg.terminal.brewInstall}`);
+        resolve();
+      }, 1000);
+    });
+  }
 
   function gitClone() {
     const projectName = config[0].projectName;
@@ -43,18 +73,6 @@ module.exports = () => {
       gitClone();
       console.log(`\n${cfg.messages.success.green}\n`);
     }, 4000);
-  }
-
-  function installHugo() {
-    console.log(`\n${cfg.messages.hugoInstall.yellow}\n`);
-    // config.push({
-    //   hugoOnBoard: false,
-    // });
-    setTimeout(() => {
-      shell.exec(`${cfg.terminal.brewInstall}`);
-      gitClone();
-      console.log(`\n${cfg.messages.success.green}\n`);
-    }, 2000);
   }
 
   function projectType() {
@@ -77,21 +95,5 @@ module.exports = () => {
       });
     });
   }
-  projectType().then(() => {
-    let questions = [{
-      message: cfg.messages.isHugoInstall,
-      type: 'list',
-      name: 'value',
-      choices: [{
-        name: 'Yes',
-        value: true,
-      }, {
-        name: 'No',
-        value: false,
-      }],
-    }];
-    inquirer.prompt(questions).then(answers => {
-      answers.value ? createProject() : installHugo();
-    });
-  });
-};
+
+}
