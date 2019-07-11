@@ -11,7 +11,6 @@ module.exports = {
     error: 'Something went wrong',
     projectName: 'What is the project name?',
     good: 'Good!',
-    isHugoInstall: 'Do you have Hugo installed?',
     startCloning: 'Now we start!',
     success: 'Success',
     hugoInstall: 'First we will install Hugo',
