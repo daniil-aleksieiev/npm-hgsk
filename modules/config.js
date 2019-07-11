@@ -13,9 +13,8 @@ module.exports = {
     good: 'Good!',
     startCloning: 'Now we start!',
     success: 'Success',
-    hugoInstall: 'First we will install Hugo',
-    upd: 'You should update the gohugo:\nsudo npm install hgsk --global',
-    needInstall: 'Hugo is not installed\nWe will install Hugo on your computer',
-    time: 'This may take some time...'
+    needUpdate: 'You should update the gohugo:\nsudo npm install hgsk --global',
+    needInstall: 'Hugo is not installed\n\nWe will install Hugo on your computer',
+    needTime: 'This may take some time...'
   }
 };

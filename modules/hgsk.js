@@ -19,7 +19,7 @@ module.exports = () => {
     console.log('Latest version: ');
     remoteVersion = exec(cfg.terminal.lastVer);
     if (localVersion < remoteVersion) {
-      console.log(`\n${cfg.messages.upd.red}`);
+      console.log(`\n${cfg.messages.needUpdate.red}`);
       return;
     } 
   }
@@ -48,7 +48,7 @@ module.exports = () => {
       shell.exec('clear');
       console.log(`\n${cfg.messages.needInstall.red}\n`);
       setTimeout(() => {
-        console.log(`\n${cfg.messages.time.yellow}\n`);
+        console.log(`${cfg.messages.needTime.yellow}\n`);
         shell.exec(`${cfg.terminal.brewInstall}`);
         resolve();
       }, 1000);
